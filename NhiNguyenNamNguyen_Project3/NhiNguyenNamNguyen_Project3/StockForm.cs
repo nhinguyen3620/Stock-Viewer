@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace NhiNguyenNamNguyen_Project3
 {
-    public partial class Form1 : Form
+    public partial class StockForm : Form
     {
-        public Form1()
+        public StockForm()
         {
             InitializeComponent();
         }
