@@ -29,13 +29,13 @@ namespace NhiNguyenNamNguyen_Project3
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.StockTitle = new System.Windows.Forms.Label();
             this.stockName = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.stockChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.stockChart)).BeginInit();
             this.SuspendLayout();
             // 
             // StockTitle
@@ -58,33 +58,36 @@ namespace NhiNguyenNamNguyen_Project3
             this.stockName.TabIndex = 1;
             this.stockName.Text = "Amazon.com, Inc.";
             // 
-            // chart1
+            // stockChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(37, 106);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(720, 325);
-            this.chart1.TabIndex = 2;
-            this.chart1.Text = "chart1";
+            chartArea3.Name = "ChartArea1";
+            this.stockChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.stockChart.Legends.Add(legend3);
+            this.stockChart.Location = new System.Drawing.Point(37, 106);
+            this.stockChart.Name = "stockChart";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series3.YValuesPerPoint = 4;
+            this.stockChart.Series.Add(series3);
+            this.stockChart.Size = new System.Drawing.Size(720, 325);
+            this.stockChart.TabIndex = 2;
+            this.stockChart.Text = "stockChart";
             // 
             // StockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.stockChart);
             this.Controls.Add(this.stockName);
             this.Controls.Add(this.StockTitle);
             this.Name = "StockForm";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.Load += new System.EventHandler(this.StockForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.stockChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,6 +97,6 @@ namespace NhiNguyenNamNguyen_Project3
 
         private System.Windows.Forms.Label StockTitle;
         private System.Windows.Forms.Label stockName;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart stockChart;
     }
 }

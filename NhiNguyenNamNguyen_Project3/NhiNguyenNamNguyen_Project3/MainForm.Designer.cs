@@ -30,15 +30,15 @@ namespace NhiNguyenNamNguyen_Project3
         private void InitializeComponent()
         {
             this.Title = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Ticker_label = new System.Windows.Forms.Label();
             this.startDate_label = new System.Windows.Forms.Label();
             this.startDatePicker = new System.Windows.Forms.DateTimePicker();
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
             this.endDate_label = new System.Windows.Forms.Label();
             this.period_label = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.periodComboBox = new System.Windows.Forms.ComboBox();
             this.startButton = new System.Windows.Forms.Button();
+            this.tickerComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // Title
@@ -50,13 +50,6 @@ namespace NhiNguyenNamNguyen_Project3
             this.Title.Size = new System.Drawing.Size(137, 25);
             this.Title.TabIndex = 0;
             this.Title.Text = "Stock Viewer";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(35, 148);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(72, 20);
-            this.textBox1.TabIndex = 1;
             // 
             // Ticker_label
             // 
@@ -80,20 +73,20 @@ namespace NhiNguyenNamNguyen_Project3
             // 
             this.startDatePicker.Location = new System.Drawing.Point(35, 208);
             this.startDatePicker.Name = "startDatePicker";
-            this.startDatePicker.Size = new System.Drawing.Size(72, 20);
+            this.startDatePicker.Size = new System.Drawing.Size(200, 20);
             this.startDatePicker.TabIndex = 5;
             // 
             // endDatePicker
             // 
-            this.endDatePicker.Location = new System.Drawing.Point(157, 208);
+            this.endDatePicker.Location = new System.Drawing.Point(35, 267);
             this.endDatePicker.Name = "endDatePicker";
-            this.endDatePicker.Size = new System.Drawing.Size(72, 20);
+            this.endDatePicker.Size = new System.Drawing.Size(200, 20);
             this.endDatePicker.TabIndex = 7;
             // 
             // endDate_label
             // 
             this.endDate_label.AutoSize = true;
-            this.endDate_label.Location = new System.Drawing.Point(154, 192);
+            this.endDate_label.Location = new System.Drawing.Point(32, 251);
             this.endDate_label.Name = "endDate_label";
             this.endDate_label.Size = new System.Drawing.Size(55, 13);
             this.endDate_label.TabIndex = 6;
@@ -102,23 +95,23 @@ namespace NhiNguyenNamNguyen_Project3
             // period_label
             // 
             this.period_label.AutoSize = true;
-            this.period_label.Location = new System.Drawing.Point(32, 254);
+            this.period_label.Location = new System.Drawing.Point(32, 301);
             this.period_label.Name = "period_label";
             this.period_label.Size = new System.Drawing.Size(97, 13);
             this.period_label.TabIndex = 9;
             this.period_label.Text = "Candlestick period:";
             // 
-            // comboBox1
+            // periodComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.periodComboBox.FormattingEnabled = true;
+            this.periodComboBox.Items.AddRange(new object[] {
             "Daily",
             "Weekly",
             "Monthly"});
-            this.comboBox1.Location = new System.Drawing.Point(35, 270);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(72, 21);
-            this.comboBox1.TabIndex = 10;
+            this.periodComboBox.Location = new System.Drawing.Point(35, 317);
+            this.periodComboBox.Name = "periodComboBox";
+            this.periodComboBox.Size = new System.Drawing.Size(72, 21);
+            this.periodComboBox.TabIndex = 10;
             // 
             // startButton
             // 
@@ -130,20 +123,28 @@ namespace NhiNguyenNamNguyen_Project3
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
+            // tickerComboBox
+            // 
+            this.tickerComboBox.FormattingEnabled = true;
+            this.tickerComboBox.Location = new System.Drawing.Point(35, 148);
+            this.tickerComboBox.Name = "tickerComboBox";
+            this.tickerComboBox.Size = new System.Drawing.Size(200, 21);
+            this.tickerComboBox.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(277, 450);
+            this.Controls.Add(this.tickerComboBox);
             this.Controls.Add(this.startButton);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.periodComboBox);
             this.Controls.Add(this.period_label);
             this.Controls.Add(this.endDatePicker);
             this.Controls.Add(this.endDate_label);
             this.Controls.Add(this.startDatePicker);
             this.Controls.Add(this.startDate_label);
             this.Controls.Add(this.Ticker_label);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Title);
             this.Name = "MainForm";
             this.Text = "Form1";
@@ -155,15 +156,15 @@ namespace NhiNguyenNamNguyen_Project3
         #endregion
 
         private System.Windows.Forms.Label Title;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label Ticker_label;
         private System.Windows.Forms.Label startDate_label;
         private System.Windows.Forms.DateTimePicker startDatePicker;
         private System.Windows.Forms.DateTimePicker endDatePicker;
         private System.Windows.Forms.Label endDate_label;
         private System.Windows.Forms.Label period_label;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox periodComboBox;
         private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.ComboBox tickerComboBox;
     }
 }
 
