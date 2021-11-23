@@ -7,10 +7,11 @@ namespace NhiNguyenNamNguyen_Project3
 {
     public partial class MainForm : Form
     {
-        public static String tickerValue;
-        public static DateTime startDate;
-        public static DateTime endDate;
-        public static String period;
+        public static string tickerSymbol;
+        public static string companyName;
+        public static int startDate;
+        public static int endDate;
+        public static string period;
 
         public MainForm()
         {
@@ -39,9 +40,13 @@ namespace NhiNguyenNamNguyen_Project3
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            tickerValue = tickerComboBox.Text;
-            startDate = startDatePicker.Value;
-            endDate = endDatePicker.Value;
+            string[] tickerVal = tickerComboBox.Text.Split('-');
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0);
+
+            tickerSymbol = tickerVal[0].Remove(tickerVal[0].Length - 1, 1);
+            companyName = tickerVal[1];
+            startDate = Convert.ToInt32((startDatePicker.Value.ToUniversalTime() - epoch).TotalSeconds);
+            endDate = Convert.ToInt32((endDatePicker.Value.ToUniversalTime() - epoch).TotalSeconds);
             period = periodComboBox.Text;
 
             var newStockChart = new StockForm();

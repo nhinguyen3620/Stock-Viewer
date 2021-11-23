@@ -33,5 +33,16 @@ namespace NhiNguyenNamNguyen_Project3.Properties {
                 return ((string)(this["StockDataConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\stockDatabase" +
+            ".mdf;Integrated Security=True")]
+        public string stockDatabaseConnectionString {
+            get {
+                return ((string)(this["stockDatabaseConnectionString"]));
+            }
+        }
     }
 }
