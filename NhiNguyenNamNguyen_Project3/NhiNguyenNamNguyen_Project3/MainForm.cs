@@ -5,6 +5,9 @@ using System.IO;
 
 namespace NhiNguyenNamNguyen_Project3
 {
+    /// <summary>
+    /// This function holds the data members of MainForm class
+    /// </summary>
     public partial class MainForm : Form
     {
         public static string tickerSymbol;
@@ -13,16 +16,21 @@ namespace NhiNguyenNamNguyen_Project3
         public static int endDate;
         public static string period;
 
+        /// <summary>
+        /// This function initializes the MainForm class
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
 
+            //initialize the start and end date
             startDatePicker.MaxDate = DateTime.Now;
             endDatePicker.MaxDate = DateTime.Now;
 
             var reader = new StreamReader(@"SP500.csv");
             List<string> tickers = new List<string>();
 
+            //get the stock names from the csv file
             reader.ReadLine();
             while (!reader.EndOfStream)
             {
@@ -38,6 +46,11 @@ namespace NhiNguyenNamNguyen_Project3
             }
         }
 
+        /// <summary>
+        /// This function will be called when the start button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startButton_Click(object sender, EventArgs e)
         {
             string[] tickerVal = tickerComboBox.Text.Split('-');

@@ -20,3 +20,25 @@ C:\Users\nam\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3
 C:\Users\nam\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.csproj.CopyComplete
 C:\Users\nam\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.exe
 C:\Users\nam\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.pdb
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\SP500.csv
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\NhiNguyenNamNguyen_Project3.exe.config
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\NhiNguyenNamNguyen_Project3.exe
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\NhiNguyenNamNguyen_Project3.pdb
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\CsvHelper.dll
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\Flurl.dll
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\Flurl.Http.dll
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\YahooFinanceApi.dll
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\CsvHelper.xml
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\Flurl.xml
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\Flurl.Http.xml
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.csproj.AssemblyReference.cache
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.MainForm.resources
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.Properties.Resources.resources
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.StockForm.resources
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.csproj.GenerateResource.cache
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.csproj.CoreCompileInputs.cache
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.csproj.CopyComplete
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.exe
+C:\Users\Nhi Nguyen\Source\Repos\nhinguyen3620\Stock-Viewer\NhiNguyenNamNguyen_Project3\NhiNguyenNamNguyen_Project3\obj\Debug\NhiNguyenNamNguyen_Project3.pdb

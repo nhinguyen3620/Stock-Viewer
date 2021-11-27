@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 namespace NhiNguyenNamNguyen_Project3
 {
+    /// <summary>
+    /// This function holds the data members of StockForm class
+    /// </summary>
     public partial class StockForm : Form
     {
         private string tickerSymbol;
@@ -17,6 +20,9 @@ namespace NhiNguyenNamNguyen_Project3
 
         private DataTable database = new DataTable();
 
+        /// <summary>
+        /// this function initializes the StockForm class
+        /// </summary>
         public StockForm()
         {
             InitializeComponent();
@@ -38,6 +44,11 @@ namespace NhiNguyenNamNguyen_Project3
             database.Columns.Add("Low", typeof(Double));
         }
 
+        /// <summary>
+        /// This function loads the required data to create chart
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StockForm_Load(object sender, EventArgs e)
         {
             // Create title
@@ -69,7 +80,9 @@ namespace NhiNguyenNamNguyen_Project3
             createChart();
         }
 
-        // Load data
+        /// <summary>
+        /// This function loads the data from Yahoo Finance
+        /// </summary>
         private void loadData()
         {
             if (period == "Daily") period = "1d";
@@ -89,7 +102,9 @@ namespace NhiNguyenNamNguyen_Project3
             stream.Close();
         }
 
-        // Create CandleStick chart
+        /// <summary>
+        /// This function creates the candlestick chart
+        /// </summary>
         private void createChart()
         {
             //Clear Grid
