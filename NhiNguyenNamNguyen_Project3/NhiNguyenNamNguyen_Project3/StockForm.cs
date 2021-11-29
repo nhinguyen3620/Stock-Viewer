@@ -4,6 +4,7 @@ using System.Net;
 using System.IO;
 using System.Data;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace NhiNguyenNamNguyen_Project3
 {
@@ -64,6 +65,10 @@ namespace NhiNguyenNamNguyen_Project3
             {
                 var line = reader.ReadLine();
                 var values = line.Split(',');
+                if (values[1] == "null" || values[2] == "null" || values[3] == "null" || values[4] == "null")
+                {
+                    continue;
+                }
 
                 // Add new data to database
                 DataRow data = database.NewRow();
@@ -76,6 +81,7 @@ namespace NhiNguyenNamNguyen_Project3
 
                 database.Rows.Add(data);
             }
+            reader.Close();
 
             createChart();
         }
@@ -95,7 +101,7 @@ namespace NhiNguyenNamNguyen_Project3
             WebClient client = new WebClient();
             byte[] buffer = client.DownloadData(historicalDataURL);
 
-            Stream stream = new FileStream(filePath, FileMode.Create);
+            Stream stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.Read);
             BinaryWriter writer = new BinaryWriter(stream);
 
             writer.Write(buffer);
