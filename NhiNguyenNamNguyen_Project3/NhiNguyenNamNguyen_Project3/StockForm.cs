@@ -4,7 +4,8 @@ using System.Net;
 using System.IO;
 using System.Data;
 using System.Collections.Generic;
-using System.Threading;
+using System.Drawing;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace NhiNguyenNamNguyen_Project3
 {
@@ -20,6 +21,9 @@ namespace NhiNguyenNamNguyen_Project3
         private string period;
 
         private DataTable database = new DataTable();
+
+        private double max = 0;
+        private double min = -1;
 
         /// <summary>
         /// this function initializes the StockForm class
@@ -43,6 +47,9 @@ namespace NhiNguyenNamNguyen_Project3
             database.Columns.Add("Close", typeof(Double));
             database.Columns.Add("High", typeof(Double));
             database.Columns.Add("Low", typeof(Double));
+
+            // Create combo box for pattern selection
+            addPattern();
         }
 
         /// <summary>
@@ -79,11 +86,86 @@ namespace NhiNguyenNamNguyen_Project3
                 data["Low"] = values[3];
                 data["Close"] = values[4];
 
+                for (int i = 1; i <= 4; i++)
+                {
+                    if (Double.Parse(values[i]) > max)
+                    {
+                        max = Double.Parse(values[i]);
+                    }
+
+                    if (min == -1 || Double.Parse(values[i]) < min)
+                    {
+                        min = Double.Parse(values[i]);
+                    }
+                }
+
                 database.Rows.Add(data);
             }
             reader.Close();
 
             createChart();
+
+            //var point = stockChart.Series["data"].Points[0];
+
+            //RectangleAnnotation annotation = new RectangleAnnotation();
+            //annotation.BackColor = Color.FromArgb(128, Color.White);
+            //annotation.ToolTip = "rectangle annotation";
+            //annotation.Width = stockChart.Width * 0.08 / stockChart.Series["data"].Points.Count;
+            //annotation.Height = point.YValues[0] - point.YValues[1];
+
+            //annotation.SetAnchor(point);
+            //stockChart.Annotations.Add(annotation);
+        }
+
+        private void cbBoxPat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(cbBoxPat.Text)
+            {
+                case "Neutral Doji":
+                    detectNeutralDoji();
+                    break;
+                case "Long-Legged Doji":
+                    detectLongLeggedDoji();
+                    break;
+                case "Dragonfly Doji":
+                    detectDragonfly_or_GravestoneDoji();
+                    break;
+                case "Gravestone Doji":
+                    detectDragonfly_or_GravestoneDoji();
+                    break;
+                case "Marubozu":
+                    break;
+                case "Bearish Harami":
+                    break;
+                case "Bullish Harami":
+                    break;
+            }
+        }
+
+        private bool isDojiPattern()
+        {
+            return true;
+        }
+
+        private bool detectNeutralDoji()
+        {
+            if (!isDojiPattern()) return false;
+
+            return true;
+        }
+
+        private bool detectLongLeggedDoji()
+        {
+            if (!isDojiPattern()) return false;
+
+            return true;
+        }
+
+        private bool detectDragonfly_or_GravestoneDoji()
+        {
+            if (!isDojiPattern()) return false;
+
+            return true;
         }
 
         /// <summary>
@@ -113,19 +195,40 @@ namespace NhiNguyenNamNguyen_Project3
         /// </summary>
         private void createChart()
         {
-            //Clear Grid
             stockChart.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
             stockChart.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 0;
-            //Init
+            stockChart.ChartAreas["ChartArea1"].AxisY.Maximum = (int) (max+10);
+            stockChart.ChartAreas["ChartArea1"].AxisY.Minimum = (int) (min-10);
+
+            stockChart.ChartAreas["ChartArea1"].AxisX.LabelAutoFitStyle = LabelAutoFitStyles.WordWrap;
+            stockChart.ChartAreas["ChartArea1"].AxisX.IsLabelAutoFit = true;
+            stockChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = true;
+
+
             stockChart.Series["data"].XValueMember = "Date";
+            stockChart.Series["data"].XValueType = ChartValueType.Date;
+
             stockChart.Series["data"].YValueMembers = "High,Low,Open,Close";
-            stockChart.Series["data"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+
             stockChart.Series["data"].CustomProperties = "PriceDownColor=Red,PriceUpColor=Green";
             stockChart.Series["data"]["OpenCloseStyle"] = "Triangle";
             stockChart.Series["data"]["ShowOpenClose"] = "Both";
-            stockChart.DataManipulator.IsStartFromFirst = true;
+            //stockChart.Series["data"]["PixelPointWidth"] = "10";
+            stockChart.Series["data"]["PointWidth"] = "0.5";
+
             stockChart.DataSource = database;
             stockChart.DataBind();
+        }
+
+        private void addPattern()
+        {
+            cbBoxPat.Items.Add("Neutral Doji");
+            cbBoxPat.Items.Add("Long-Legged Doji");
+            cbBoxPat.Items.Add("Dragonfly Doji");
+            cbBoxPat.Items.Add("Gravestone Doji");
+            cbBoxPat.Items.Add("Marubozu");
+            cbBoxPat.Items.Add("Bearish Harami");
+            cbBoxPat.Items.Add("Bullish Harami");
         }
     }
 }
