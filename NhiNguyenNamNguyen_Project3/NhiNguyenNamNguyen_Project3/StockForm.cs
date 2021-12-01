@@ -116,9 +116,7 @@ namespace NhiNguyenNamNguyen_Project3
                 annotation.Width = 50 / stockChart.Series["data"].Points.Count;
                 annotation.Height = ((point.YValues[0] - point.YValues[1]) / yRange) * 85;
            
-                annotation.AnchorY = - annotation.Height ;
                 annotation.AnchorOffsetY = -(annotation.Height );
-
 
                 annotation.SetAnchor(point);
     
