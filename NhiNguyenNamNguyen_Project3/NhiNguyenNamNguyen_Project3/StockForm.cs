@@ -104,17 +104,27 @@ namespace NhiNguyenNamNguyen_Project3
             reader.Close();
 
             createChart();
+            for (int i = 0; i < stockChart.Series["data"].Points.Count; i++)
+            {
+                var point = stockChart.Series["data"].Points[i];
+                double yRange = stockChart.ChartAreas["ChartArea1"].AxisY.Maximum - stockChart.ChartAreas["ChartArea1"].AxisY.Minimum;
+                RectangleAnnotation annotation = new RectangleAnnotation();
+                annotation.BackColor = Color.FromArgb(128, Color.White);
+                annotation.ToolTip = "rectangle annotation";
+         
+            
+                annotation.Width = 50 / stockChart.Series["data"].Points.Count;
+                annotation.Height = ((point.YValues[0] - point.YValues[1]) / yRange) * 85;
+           
+                annotation.AnchorY = - annotation.Height ;
+                annotation.AnchorOffsetY = -(annotation.Height );
 
-            //var point = stockChart.Series["data"].Points[0];
 
-            //RectangleAnnotation annotation = new RectangleAnnotation();
-            //annotation.BackColor = Color.FromArgb(128, Color.White);
-            //annotation.ToolTip = "rectangle annotation";
-            //annotation.Width = stockChart.Width * 0.08 / stockChart.Series["data"].Points.Count;
-            //annotation.Height = point.YValues[0] - point.YValues[1];
-
-            //annotation.SetAnchor(point);
-            //stockChart.Annotations.Add(annotation);
+                annotation.SetAnchor(point);
+    
+                stockChart.Annotations.Add(annotation);
+                }
+            
         }
 
         private void cbBoxPat_SelectedIndexChanged(object sender, EventArgs e)
