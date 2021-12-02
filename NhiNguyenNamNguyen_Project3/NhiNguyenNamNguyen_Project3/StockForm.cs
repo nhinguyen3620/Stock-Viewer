@@ -104,6 +104,7 @@ namespace NhiNguyenNamNguyen_Project3
             reader.Close();
 
             createChart();
+          
         }
 
         private void cbBoxPat_SelectedIndexChanged(object sender, EventArgs e)
