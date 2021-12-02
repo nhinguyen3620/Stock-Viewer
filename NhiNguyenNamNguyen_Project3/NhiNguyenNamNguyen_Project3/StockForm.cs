@@ -24,6 +24,9 @@ namespace NhiNguyenNamNguyen_Project3
 
         private double max = 0;
         private double min = -1;
+        private double range = 0;
+
+        private List<RectangleAnnotation> annotationList = new List<RectangleAnnotation>();
 
         /// <summary>
         /// this function initializes the StockForm class
@@ -104,7 +107,8 @@ namespace NhiNguyenNamNguyen_Project3
             reader.Close();
 
             createChart();
-          
+
+            range = (max - min) / stockChart.Series["data"].Points.Count;
         }
 
         private void cbBoxPat_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,7 +123,6 @@ namespace NhiNguyenNamNguyen_Project3
                 {
                     case "Neutral Doji":
                         result = isNeutralDoji(i);
-                        result = 1;
                         break;
                     case "Long-Legged Doji":
                         result = isLongLeggedDoji(i);
@@ -128,8 +131,9 @@ namespace NhiNguyenNamNguyen_Project3
                     case "Gravestone Doji":
                         result = isDragonfly_or_GravestoneDoji(i, cbBoxPat.Text);
                         break;
-                    case "Marubozu":
-                        result = isMarubozu(i);
+                    case "Bearish Marubozu":
+                    case "Bullish Marubozu":
+                        result = isBearish_or_BullishMarubozu(i, cbBoxPat.Text);
                         break;
                     case "Bearish Harami":
                     case "Bullish Harami":
@@ -146,7 +150,7 @@ namespace NhiNguyenNamNguyen_Project3
         {
             var point = stockChart.Series["data"].Points[idx];
 
-            return Math.Abs(point.YValues[2] - point.YValues[3]) <= 0.05 ? 1 : 0;
+            return Math.Abs(point.YValues[2] - point.YValues[3]) <= 0.05 * range ? 1 : 0;
         }
 
         private int isNeutralDoji(int idx)
@@ -157,7 +161,7 @@ namespace NhiNguyenNamNguyen_Project3
             double large = point.YValues[2] > point.YValues[3] ? point.YValues[2] : point.YValues[3];
             double small = point.YValues[2] < point.YValues[3] ? point.YValues[2] : point.YValues[3];
 
-            return (point.YValues[0] - large >= 0.4 || small - point.YValues[1] >= 0.4) ? 1 : 0;
+            return (point.YValues[0] - large >= 0.4 * range || small - point.YValues[1] >= 0.4 * range) ? 1 : 0;
         }
 
         private int isLongLeggedDoji(int idx)
@@ -168,7 +172,7 @@ namespace NhiNguyenNamNguyen_Project3
             double large = point.YValues[2] > point.YValues[3] ? point.YValues[2] : point.YValues[3];
             double small = point.YValues[2] < point.YValues[3] ? point.YValues[2] : point.YValues[3];
 
-            return (point.YValues[0] - large <= 0.25 || small - point.YValues[1] <= 0.25) ? 1 : 0;
+            return (point.YValues[0] - large >= 0.2 * range && small - point.YValues[1] >= 0.2 * range) ? 1 : 0;
         }
 
         private int isDragonfly_or_GravestoneDoji(int idx, string pattern)
@@ -181,20 +185,33 @@ namespace NhiNguyenNamNguyen_Project3
 
             if (pattern == "Dragonfly Doji")
             {
-                return (point.YValues[0] - large <= 0.05) ? 1 : 0;
+                return (point.YValues[0] - large <= 0.05 * range) ? 1 : 0;
             } else
             {
-                return (small - point.YValues[1] <= 0.05) ? 1 : 0;
+                return (small - point.YValues[1] <= 0.05 * range) ? 1 : 0;
             }
         }
 
-        private int isMarubozu(int idx)
+        private int isBearish_or_BullishMarubozu(int idx, string pattern)
         {
             if (isDojiPattern(idx) == 1) return 0;
 
             var point = stockChart.Series["data"].Points[idx];
 
-            return (point.YValues[0] - point.YValues[2] <= 0.05 && point.YValues[3] - point.YValues[1] <= 0.05) ? 1 : 0;
+            if (point.YValues[0] - point.YValues[2] <= 0.05 * range && point.YValues[3] - point.YValues[1] <= 0.05 * range)
+            {
+                if (pattern == "Bearish Marubozu")
+                {
+                    return (point.YValues[2] > point.YValues[3]) ? 1 : 0;
+                }
+                else
+                {
+                    return (point.YValues[2] < point.YValues[3]) ? 1 : 0;
+                }
+            } else
+            {
+                return 0;
+            }
         }
 
         private int isBearish_or_BullishHarami(int idx, string pattern)
@@ -260,7 +277,8 @@ namespace NhiNguyenNamNguyen_Project3
             cbBoxPat.Items.Add("Long-Legged Doji");
             cbBoxPat.Items.Add("Dragonfly Doji");
             cbBoxPat.Items.Add("Gravestone Doji");
-            cbBoxPat.Items.Add("Marubozu");
+            cbBoxPat.Items.Add("Bearish Marubozu");
+            cbBoxPat.Items.Add("Bullish Marubozu");
             cbBoxPat.Items.Add("Bearish Harami");
             cbBoxPat.Items.Add("Bullish Harami");
         }
@@ -274,14 +292,15 @@ namespace NhiNguyenNamNguyen_Project3
             annotation.ToolTip = "rectangle annotation";
 
 
-            annotation.Width = 50 / stockChart.Series["data"].Points.Count;
-            annotation.Height = ((point.YValues[0] - point.YValues[1]) / yRange) * 85;
+            annotation.Width = stockChart.Width * 0.06 / stockChart.Series["data"].Points.Count;
+            annotation.Height = ((point.YValues[0] - point.YValues[1]) / yRange) * stockChart.Height * 0.255;
 
             annotation.AnchorOffsetY = -(annotation.Height);
-
+             
             annotation.SetAnchor(point);
 
             stockChart.Annotations.Add(annotation);
+            annotationList.Add(annotation);
         }
 
         private void addRectangleMultiple(int i)
@@ -291,7 +310,12 @@ namespace NhiNguyenNamNguyen_Project3
 
         private void clearRectangle()
         {
+            if (annotationList == null) return;
 
+            for (int i = 0; i < annotationList.Count; i++)
+            {
+                stockChart.Annotations.Remove(annotationList[i]);
+            }
         }
     }
 }
