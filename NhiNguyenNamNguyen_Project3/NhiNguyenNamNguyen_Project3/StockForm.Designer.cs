@@ -62,6 +62,7 @@ namespace NhiNguyenNamNguyen_Project3
             // 
             // stockChart
             // 
+            this.stockChart.BackColor = System.Drawing.Color.WhiteSmoke;
             chartArea1.Name = "ChartArea1";
             this.stockChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -80,20 +81,22 @@ namespace NhiNguyenNamNguyen_Project3
             // 
             // cbBoxPat
             // 
+            this.cbBoxPat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbBoxPat.FormattingEnabled = true;
-            this.cbBoxPat.Location = new System.Drawing.Point(561, 61);
-            this.cbBoxPat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbBoxPat.Location = new System.Drawing.Point(548, 58);
+            this.cbBoxPat.Margin = new System.Windows.Forms.Padding(2);
             this.cbBoxPat.Name = "cbBoxPat";
-            this.cbBoxPat.Size = new System.Drawing.Size(166, 21);
+            this.cbBoxPat.Size = new System.Drawing.Size(166, 28);
             this.cbBoxPat.TabIndex = 3;
             this.cbBoxPat.SelectedIndexChanged += new System.EventHandler(this.cbBoxPat_SelectedIndexChanged);
             // 
             // patternLabel
             // 
             this.patternLabel.AutoSize = true;
-            this.patternLabel.Location = new System.Drawing.Point(558, 46);
+            this.patternLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patternLabel.Location = new System.Drawing.Point(478, 58);
             this.patternLabel.Name = "patternLabel";
-            this.patternLabel.Size = new System.Drawing.Size(44, 13);
+            this.patternLabel.Size = new System.Drawing.Size(65, 20);
             this.patternLabel.TabIndex = 4;
             this.patternLabel.Text = "Pattern:";
             // 
@@ -101,12 +104,14 @@ namespace NhiNguyenNamNguyen_Project3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Tan;
             this.ClientSize = new System.Drawing.Size(758, 450);
             this.Controls.Add(this.patternLabel);
             this.Controls.Add(this.cbBoxPat);
             this.Controls.Add(this.stockChart);
             this.Controls.Add(this.stockName);
             this.Controls.Add(this.stockTitle);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "StockForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.StockForm_Load);
