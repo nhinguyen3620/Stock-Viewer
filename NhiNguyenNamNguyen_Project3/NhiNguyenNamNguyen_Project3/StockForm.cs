@@ -110,7 +110,6 @@ namespace NhiNguyenNamNguyen_Project3
 
             range = (max - min) / stockChart.Series["data"].Points.Count;
 
-            
         }
 
         /// <summary>
@@ -152,6 +151,7 @@ namespace NhiNguyenNamNguyen_Project3
                 if (result == 1) addRectangleOne(i);
                 else if (result == 2) addRectangleMultiple(i);
             }
+             
         }
 
         //function to check if a candlestick has doji pattern
@@ -337,16 +337,15 @@ namespace NhiNguyenNamNguyen_Project3
            
           
             annotation.Height = ((high-low) / yRange) * 85;
-            
+             
             if (p0.YValues[1] < p1.YValues[1] && p1.YValues[0] > p0.YValues[0])
             {
-                double diff = p1.YValues[0] - p0.YValues[1];
-                annotation.AnchorOffsetY = -(annotation.Height - diff);
+               if (annotation.Height <= 105 && annotation.Height >= -105)
+                 annotation.AnchorOffsetY = -(annotation.Height - 5);
             }
-            else if (p0.YValues[1] > p1.YValues[1] && p1.YValues[0] > p0.YValues[0]) {
-                
-                double diff = p0.YValues[0] - p1.YValues[1];
-                annotation.AnchorOffsetY = -(annotation.Height - diff);
+            else if (p0.YValues[1] > p1.YValues[1] && p1.YValues[0] > p0.YValues[0]) {  
+                if (annotation.Height <= 105 && annotation.Height >= -105)
+                     annotation.AnchorOffsetY = -(annotation.Height - 5);
             }
             else
             {
