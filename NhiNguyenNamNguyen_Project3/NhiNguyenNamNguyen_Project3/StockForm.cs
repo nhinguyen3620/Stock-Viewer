@@ -53,6 +53,8 @@ namespace NhiNguyenNamNguyen_Project3
 
             // Create combo box for pattern selection
             addPattern();
+
+            
         }
 
         /// <summary>
@@ -109,6 +111,7 @@ namespace NhiNguyenNamNguyen_Project3
             createChart();
 
             range = (max - min) / stockChart.Series["data"].Points.Count;
+           
 
         }
 
@@ -385,8 +388,8 @@ namespace NhiNguyenNamNguyen_Project3
             }
             else if (stockChart.Series["data"].Points.Count > 10 && stockChart.Series["data"].Points.Count < 18)
             {
-                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.1;
-                annotation.Width += 5;
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.15;
+                annotation.Width += 3.3;
             }
             else if (stockChart.Series["data"].Points.Count >= 18 && stockChart.Series["data"].Points.Count < 23)
             {
