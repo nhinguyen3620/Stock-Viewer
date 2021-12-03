@@ -44,98 +44,110 @@ namespace NhiNguyenNamNguyen_Project3
             // Title
             // 
             this.Title.AutoSize = true;
-            this.Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(66, 67);
+            this.Title.Font = new System.Drawing.Font("Segoe Print", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title.Location = new System.Drawing.Point(68, 60);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(137, 25);
+            this.Title.Size = new System.Drawing.Size(214, 51);
             this.Title.TabIndex = 0;
             this.Title.Text = "Stock Viewer";
             // 
             // Ticker_label
             // 
             this.Ticker_label.AutoSize = true;
+            this.Ticker_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ticker_label.Location = new System.Drawing.Point(32, 132);
             this.Ticker_label.Name = "Ticker_label";
-            this.Ticker_label.Size = new System.Drawing.Size(40, 13);
+            this.Ticker_label.Size = new System.Drawing.Size(55, 20);
             this.Ticker_label.TabIndex = 2;
             this.Ticker_label.Text = "Ticker:";
             // 
             // startDate_label
             // 
             this.startDate_label.AutoSize = true;
-            this.startDate_label.Location = new System.Drawing.Point(32, 192);
+            this.startDate_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDate_label.Location = new System.Drawing.Point(32, 205);
             this.startDate_label.Name = "startDate_label";
-            this.startDate_label.Size = new System.Drawing.Size(58, 13);
+            this.startDate_label.Size = new System.Drawing.Size(87, 20);
             this.startDate_label.TabIndex = 4;
             this.startDate_label.Text = "Start Date:";
             // 
             // startDatePicker
             // 
-            this.startDatePicker.Location = new System.Drawing.Point(35, 208);
+            this.startDatePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDatePicker.Location = new System.Drawing.Point(35, 228);
             this.startDatePicker.Name = "startDatePicker";
-            this.startDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.startDatePicker.Size = new System.Drawing.Size(289, 26);
             this.startDatePicker.TabIndex = 5;
             // 
             // endDatePicker
             // 
-            this.endDatePicker.Location = new System.Drawing.Point(35, 267);
+            this.endDatePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDatePicker.Location = new System.Drawing.Point(35, 302);
             this.endDatePicker.Name = "endDatePicker";
-            this.endDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.endDatePicker.Size = new System.Drawing.Size(289, 26);
             this.endDatePicker.TabIndex = 7;
             // 
             // endDate_label
             // 
             this.endDate_label.AutoSize = true;
-            this.endDate_label.Location = new System.Drawing.Point(32, 251);
+            this.endDate_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDate_label.Location = new System.Drawing.Point(32, 279);
             this.endDate_label.Name = "endDate_label";
-            this.endDate_label.Size = new System.Drawing.Size(55, 13);
+            this.endDate_label.Size = new System.Drawing.Size(81, 20);
             this.endDate_label.TabIndex = 6;
             this.endDate_label.Text = "End Date:";
             // 
             // period_label
             // 
             this.period_label.AutoSize = true;
-            this.period_label.Location = new System.Drawing.Point(32, 301);
+            this.period_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.period_label.Location = new System.Drawing.Point(31, 363);
             this.period_label.Name = "period_label";
-            this.period_label.Size = new System.Drawing.Size(97, 13);
+            this.period_label.Size = new System.Drawing.Size(143, 20);
             this.period_label.TabIndex = 9;
             this.period_label.Text = "Candlestick period:";
             // 
             // periodComboBox
             // 
+            this.periodComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.periodComboBox.FormattingEnabled = true;
             this.periodComboBox.Items.AddRange(new object[] {
             "Daily",
             "Weekly",
             "Monthly"});
-            this.periodComboBox.Location = new System.Drawing.Point(35, 317);
+            this.periodComboBox.Location = new System.Drawing.Point(181, 360);
             this.periodComboBox.Name = "periodComboBox";
-            this.periodComboBox.Size = new System.Drawing.Size(72, 21);
+            this.periodComboBox.Size = new System.Drawing.Size(143, 28);
             this.periodComboBox.TabIndex = 10;
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(99, 354);
+            this.startButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.startButton.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.startButton.Location = new System.Drawing.Point(128, 425);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(59, 25);
+            this.startButton.Size = new System.Drawing.Size(94, 44);
             this.startButton.TabIndex = 11;
             this.startButton.Text = "Start";
-            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // tickerComboBox
             // 
+            this.tickerComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tickerComboBox.FormattingEnabled = true;
-            this.tickerComboBox.Location = new System.Drawing.Point(35, 148);
+            this.tickerComboBox.Location = new System.Drawing.Point(36, 155);
             this.tickerComboBox.Name = "tickerComboBox";
-            this.tickerComboBox.Size = new System.Drawing.Size(200, 21);
+            this.tickerComboBox.Size = new System.Drawing.Size(288, 24);
             this.tickerComboBox.TabIndex = 12;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(277, 450);
+            this.BackColor = System.Drawing.Color.Silver;
+            this.ClientSize = new System.Drawing.Size(350, 491);
             this.Controls.Add(this.tickerComboBox);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.periodComboBox);
