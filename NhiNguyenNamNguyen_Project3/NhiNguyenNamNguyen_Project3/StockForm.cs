@@ -24,7 +24,6 @@ namespace NhiNguyenNamNguyen_Project3
 
         private double max = 0;
         private double min = -1;
-        private double range = 0;
 
         private List<RectangleAnnotation> annotationList = new List<RectangleAnnotation>();
 
@@ -107,10 +106,6 @@ namespace NhiNguyenNamNguyen_Project3
             reader.Close();
 
             createChart();
-
-            range = (max - min) / stockChart.Series["data"].Points.Count;
-
-            
         }
 
         /// <summary>
@@ -145,7 +140,8 @@ namespace NhiNguyenNamNguyen_Project3
                         break;
                     case "Bearish Harami":
                     case "Bullish Harami":
-                        result = isBearish_or_BullishHarami(i, cbBoxPat.Text);
+                        if (i == stockChart.Series["data"].Points.Count - 1) result = 0;
+                        else result = isBearish_or_BullishHarami(i, cbBoxPat.Text);
                         break;
                 }
 
@@ -158,9 +154,12 @@ namespace NhiNguyenNamNguyen_Project3
         private int isDojiPattern(int idx)
         {
             var point = stockChart.Series["data"].Points[idx];
+            double large = point.YValues[2] > point.YValues[3] ? point.YValues[2] : point.YValues[3];
 
             //is doji if open-close < 5%
-            return Math.Abs(point.YValues[2] - point.YValues[3]) <= 0.05 * range ? 1 : 0;
+            int result = Math.Abs(point.YValues[2] - point.YValues[3]) <= 0.0005 * large ? 1 : 0;
+
+            return result;
         }
 
         //function to check if a candlestick has neutral doji pattern
@@ -172,7 +171,7 @@ namespace NhiNguyenNamNguyen_Project3
             double large = point.YValues[2] > point.YValues[3] ? point.YValues[2] : point.YValues[3];
             double small = point.YValues[2] < point.YValues[3] ? point.YValues[2] : point.YValues[3];
 
-            return (point.YValues[0] - large >= 0.4 * range || small - point.YValues[1] >= 0.4 * range) ? 1 : 0;
+            return (point.YValues[0] - large >= 0.0005 * point.YValues[0] || small - point.YValues[1] >= 0.0005 * small) ? 1 : 0;
         }
 
         //function to check if a candlestick has long legged doji pattern
@@ -185,7 +184,7 @@ namespace NhiNguyenNamNguyen_Project3
             double large = point.YValues[2] > point.YValues[3] ? point.YValues[2] : point.YValues[3];
             double small = point.YValues[2] < point.YValues[3] ? point.YValues[2] : point.YValues[3];
 
-            return (point.YValues[0] - large >= 0.2 * range && small - point.YValues[1] >= 0.2 * range) ? 1 : 0;
+            return (point.YValues[0] - large >= 0.002 * point.YValues[0] && small - point.YValues[1] >= 0.002 * small) ? 1 : 0;
         }
 
         //function to check if a candlestick has dragonfly or gravestone doji pattern
@@ -199,10 +198,10 @@ namespace NhiNguyenNamNguyen_Project3
 
             if (pattern == "Dragonfly Doji")
             {
-                return (point.YValues[0] - large <= 0.05 * range) ? 1 : 0;
+                return (point.YValues[0] - large <= 0.0005 * point.YValues[0]) ? 1 : 0;
             } else
             {
-                return (small - point.YValues[1] <= 0.05 * range) ? 1 : 0;
+                return (small - point.YValues[1] <= 0.0005 * small) ? 1 : 0;
             }
         }
 
@@ -212,8 +211,10 @@ namespace NhiNguyenNamNguyen_Project3
             if (isDojiPattern(idx) == 1) return 0;
 
             var point = stockChart.Series["data"].Points[idx];
+            double large = point.YValues[2] > point.YValues[3] ? point.YValues[2] : point.YValues[3];
+            double small = point.YValues[2] < point.YValues[3] ? point.YValues[2] : point.YValues[3];
 
-            if (point.YValues[0] - point.YValues[2] <= 0.05 * range && point.YValues[3] - point.YValues[1] <= 0.05 * range)
+            if (point.YValues[0] - large <= 0.0005 * point.YValues[0] && small - point.YValues[1] <= 0.0005 * small)
             {
                 if (pattern == "Bearish Marubozu")
                 {
@@ -264,8 +265,8 @@ namespace NhiNguyenNamNguyen_Project3
         {
             stockChart.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
             stockChart.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 0;
-            stockChart.ChartAreas["ChartArea1"].AxisY.Maximum = (int) (max+10);
-            stockChart.ChartAreas["ChartArea1"].AxisY.Minimum = (int) (min-10);
+            stockChart.ChartAreas["ChartArea1"].AxisY.Maximum = (int) Math.Ceiling(max);
+            stockChart.ChartAreas["ChartArea1"].AxisY.Minimum = (int) Math.Floor(min);
 
             stockChart.ChartAreas["ChartArea1"].AxisX.LabelAutoFitStyle = LabelAutoFitStyles.WordWrap;
             stockChart.ChartAreas["ChartArea1"].AxisX.IsLabelAutoFit = true;
@@ -331,7 +332,7 @@ namespace NhiNguyenNamNguyen_Project3
 
 
             annotation.Width = 100 / stockChart.Series["data"].Points.Count;
-            double yRange = stockChart.ChartAreas["ChartArea1"].AxisY.Maximum - stockChart.ChartAreas["ChartArea1"].AxisY.Minimum;
+            double yRange = stockChart.ChartAreas["ChartArea1"].AxisY.Maximum - stockChart.ChartAreas["ChartArea1"].AxisY.Minimum + 20;
             double high = Math.Max(p0.YValues[0], p1.YValues[0]);
             double low = Math.Min(p0.YValues[1], p1.YValues[1]);
            
@@ -428,6 +429,7 @@ namespace NhiNguyenNamNguyen_Project3
             annotation.SetAnchor(p0);
 
             stockChart.Annotations.Add(annotation);
+            annotationList.Add(annotation);
         }
 
         private void clearRectangle()
