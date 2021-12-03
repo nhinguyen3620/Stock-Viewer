@@ -109,12 +109,20 @@ namespace NhiNguyenNamNguyen_Project3
             createChart();
 
             range = (max - min) / stockChart.Series["data"].Points.Count;
+
+            
         }
 
+        /// <summary>
+        /// This function will be called when the selected index of the combo box changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbBoxPat_SelectedIndexChanged(object sender, EventArgs e)
         {
             clearRectangle();
 
+            //loop through the candlesticks
             for (int i = 0; i < stockChart.Series["data"].Points.Count; i++)
             {
                 int result = 0;
@@ -146,13 +154,16 @@ namespace NhiNguyenNamNguyen_Project3
             }
         }
 
+        //function to check if a candlestick has doji pattern
         private int isDojiPattern(int idx)
         {
             var point = stockChart.Series["data"].Points[idx];
 
+            //is doji if open-close < 5%
             return Math.Abs(point.YValues[2] - point.YValues[3]) <= 0.05 * range ? 1 : 0;
         }
 
+        //function to check if a candlestick has neutral doji pattern
         private int isNeutralDoji(int idx)
         {
             if (isDojiPattern(idx) == 0) return 0;
@@ -164,10 +175,12 @@ namespace NhiNguyenNamNguyen_Project3
             return (point.YValues[0] - large >= 0.4 * range || small - point.YValues[1] >= 0.4 * range) ? 1 : 0;
         }
 
+        //function to check if a candlestick has long legged doji pattern
         private int isLongLeggedDoji(int idx)
         {
             if (isDojiPattern(idx) == 0) return 0;
 
+            //is long legged doji if high - open/close >= 20% && open/close - low > -20%
             var point = stockChart.Series["data"].Points[idx];
             double large = point.YValues[2] > point.YValues[3] ? point.YValues[2] : point.YValues[3];
             double small = point.YValues[2] < point.YValues[3] ? point.YValues[2] : point.YValues[3];
@@ -175,6 +188,7 @@ namespace NhiNguyenNamNguyen_Project3
             return (point.YValues[0] - large >= 0.2 * range && small - point.YValues[1] >= 0.2 * range) ? 1 : 0;
         }
 
+        //function to check if a candlestick has dragonfly or gravestone doji pattern
         private int isDragonfly_or_GravestoneDoji(int idx, string pattern)
         {
             if (isDojiPattern(idx) == 0) return 0;
@@ -192,6 +206,7 @@ namespace NhiNguyenNamNguyen_Project3
             }
         }
 
+        //function to check if a candlestick has bearish or bullish marubozu pattern
         private int isBearish_or_BullishMarubozu(int idx, string pattern)
         {
             if (isDojiPattern(idx) == 1) return 0;
@@ -214,6 +229,7 @@ namespace NhiNguyenNamNguyen_Project3
             }
         }
 
+        //function to check if a candlestick has bearish or bullish harami pattern
         private int isBearish_or_BullishHarami(int idx, string pattern)
         {
             return 2;
@@ -283,6 +299,7 @@ namespace NhiNguyenNamNguyen_Project3
             cbBoxPat.Items.Add("Bullish Harami");
         }
 
+        //function to draw candle around 1 candlestick
         private void addRectangleOne(int i)
         {
             var point = stockChart.Series["data"].Points[i];
@@ -303,9 +320,114 @@ namespace NhiNguyenNamNguyen_Project3
             annotationList.Add(annotation);
         }
 
+        //function to draw rectangle around 2 candlesticks
         private void addRectangleMultiple(int i)
         {
+            var p0 = stockChart.Series["data"].Points[i];
+            var p1 = stockChart.Series["data"].Points[i + 1];
+            RectangleAnnotation annotation = new RectangleAnnotation();
+            annotation.BackColor = Color.FromArgb(128, Color.White);
+            annotation.ToolTip = "rectangle annotation";
 
+
+            annotation.Width = 100 / stockChart.Series["data"].Points.Count;
+            double yRange = stockChart.ChartAreas["ChartArea1"].AxisY.Maximum - stockChart.ChartAreas["ChartArea1"].AxisY.Minimum;
+            double high = Math.Max(p0.YValues[0], p1.YValues[0]);
+            double low = Math.Min(p0.YValues[1], p1.YValues[1]);
+           
+          
+            annotation.Height = ((high-low) / yRange) * 85;
+            
+            if (p0.YValues[1] < p1.YValues[1] && p1.YValues[0] > p0.YValues[0])
+            {
+                double diff = p1.YValues[0] - p0.YValues[1];
+                annotation.AnchorOffsetY = -(annotation.Height - diff);
+            }
+            else if (p0.YValues[1] > p1.YValues[1] && p1.YValues[0] > p0.YValues[0]) {
+                
+                double diff = p0.YValues[0] - p1.YValues[1];
+                annotation.AnchorOffsetY = -(annotation.Height - diff);
+            }
+            else
+            {
+                 annotation.AnchorOffsetY = -(annotation.Height);
+            }
+
+            if (stockChart.Series["data"].Points.Count <= 3)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 3;
+               
+            }
+            else if (stockChart.Series["data"].Points.Count  == 4)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 1.75;
+            }
+            else if (stockChart.Series["data"].Points.Count == 5)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 1.1;
+            }
+            else if (stockChart.Series["data"].Points.Count == 6)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.9;
+            }
+            else if (stockChart.Series["data"].Points.Count == 7)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.65;
+            }
+            else if (stockChart.Series["data"].Points.Count == 8 || stockChart.Series["data"].Points.Count == 9 )
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.45;
+                annotation.Width += 5;
+            }
+            else if (stockChart.Series["data"].Points.Count == 10)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.20;
+                annotation.Width += 5;
+            }
+            else if (stockChart.Series["data"].Points.Count > 10 && stockChart.Series["data"].Points.Count < 18)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.1;
+                annotation.Width += 5;
+            }
+            else if (stockChart.Series["data"].Points.Count >= 18 && stockChart.Series["data"].Points.Count < 23)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.1;
+                annotation.Width += 2;
+            }
+            else if (stockChart.Series["data"].Points.Count >= 23 && stockChart.Series["data"].Points.Count < 30)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.05;
+                annotation.Width += 2;
+            }
+            else if (stockChart.Series["data"].Points.Count >= 30 && stockChart.Series["data"].Points.Count < 40)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.025;
+                annotation.Width += 2;
+            }
+            else if (stockChart.Series["data"].Points.Count >= 40 && stockChart.Series["data"].Points.Count < 47)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.015;
+                annotation.Width += 2;
+            }
+            else if (stockChart.Series["data"].Points.Count >= 46 && stockChart.Series["data"].Points.Count < 67)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.009;
+                annotation.Width += 1.8;
+            }
+            else if (stockChart.Series["data"].Points.Count >= 67 && stockChart.Series["data"].Points.Count < 80)
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.002;
+                annotation.Width += 1.6;
+            }
+            else
+            {
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.001;
+                annotation.Width += 1.4;
+            }
+         
+            annotation.SetAnchor(p0);
+
+            stockChart.Annotations.Add(annotation);
         }
 
         private void clearRectangle()
