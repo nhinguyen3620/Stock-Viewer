@@ -135,11 +135,11 @@ namespace NhiNguyenNamNguyen_Project3
             // 
             // tickerComboBox
             // 
-            this.tickerComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tickerComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tickerComboBox.FormattingEnabled = true;
             this.tickerComboBox.Location = new System.Drawing.Point(36, 155);
             this.tickerComboBox.Name = "tickerComboBox";
-            this.tickerComboBox.Size = new System.Drawing.Size(288, 28);
+            this.tickerComboBox.Size = new System.Drawing.Size(288, 24);
             this.tickerComboBox.TabIndex = 12;
             // 
             // MainForm
