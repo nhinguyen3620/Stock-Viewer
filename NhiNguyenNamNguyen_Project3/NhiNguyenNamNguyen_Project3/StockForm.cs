@@ -239,15 +239,21 @@ namespace NhiNguyenNamNguyen_Project3
             var prev = stockChart.Series["data"].Points[idx];
             var curr = stockChart.Series["data"].Points[idx + 1];
 
-            //"High,Low,Open,Close"
             double prev_open = prev.YValues[2];
             double prev_close = prev.YValues[3];
+            double prev_high = prev.YValues[0];
+            double prev_low = prev.YValues[1];
             double curr_open = curr.YValues[2];
             double curr_close = curr.YValues[3];
+            double curr_high = curr.YValues[0];
+            double curr_low = curr.YValues[1];
+
+            if (isDojiPattern(idx) == 1 || isDojiPattern(idx + 1) == 1)
+                return 0;
 
             if (pattern == "Bearish Harami")
             {
-                if (prev_open < prev_close && (curr_open - curr_close < prev_close - prev_open))
+                if (prev_open < prev_close && curr_open - curr_close < prev_close - prev_open && prev_high >= curr_high && prev_low < curr_low)
                 {
                     if (prev_open <= curr_close && curr_close < curr_open && curr_open <= prev_close)
                         return 2;
@@ -257,7 +263,7 @@ namespace NhiNguyenNamNguyen_Project3
 
             if (pattern == "Bullish Harami")
             {
-                if (prev_open > prev_close && (curr_close - curr_open < prev_open - prev_close))
+                if (prev_open > prev_close && curr_close - curr_open < prev_open - prev_close && prev_high >= curr_high && prev_low < curr_low)
                 {
                     if (prev_close <= curr_open && curr_open < curr_close && curr_close <= prev_open) 
                         return 2;
