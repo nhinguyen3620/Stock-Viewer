@@ -108,6 +108,7 @@ namespace NhiNguyenNamNguyen_Project3
             reader.Close();
 
             createChart();
+            Console.WriteLine(stockChart.Series["data"].Points.Count);
         }
 
         /// <summary>
@@ -439,13 +440,13 @@ namespace NhiNguyenNamNguyen_Project3
             }
             else if (stockChart.Series["data"].Points.Count >= 67 && stockChart.Series["data"].Points.Count < 80)
             {
-                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.002;
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.003;
                 annotation.Width += 1.6;
             }
             else
             {
-                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.001;
-                annotation.Width += 1.4;
+                annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.0016;
+                annotation.Width += 0.8;
             }
          
             annotation.SetAnchor(p0);
