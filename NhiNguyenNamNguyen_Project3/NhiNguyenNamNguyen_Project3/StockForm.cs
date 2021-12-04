@@ -236,7 +236,35 @@ namespace NhiNguyenNamNguyen_Project3
         //function to check if a candlestick has bearish or bullish harami pattern
         private int isBearish_or_BullishHarami(int idx, string pattern)
         {
-            return 2;
+            var prev = stockChart.Series["data"].Points[idx];
+            var curr = stockChart.Series["data"].Points[idx + 1];
+
+            //"High,Low,Open,Close"
+            double prev_open = prev.YValues[2];
+            double prev_close = prev.YValues[3];
+            double curr_open = curr.YValues[2];
+            double curr_close = curr.YValues[3];
+
+            if (pattern == "Bearish Harami")
+            {
+                if (prev_open < prev_close && (curr_open - curr_close < prev_close - prev_open))
+                {
+                    if (prev_open <= curr_close && curr_close < curr_open && curr_open <= prev_close)
+                        return 2;
+                }
+                return 0;
+            }
+
+            if (pattern == "Bullish Harami")
+            {
+                if (prev_open > prev_close && (curr_close - curr_open < prev_open - prev_close))
+                {
+                    if (prev_close <= curr_open && curr_open < curr_close && curr_close <= prev_open) 
+                        return 2;
+                }
+                return 0;
+            }
+            return 0;
         }
 
         /// <summary>
