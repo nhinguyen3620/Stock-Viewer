@@ -146,7 +146,7 @@ namespace NhiNguyenNamNguyen_Project3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.Tan;
             this.ClientSize = new System.Drawing.Size(350, 491);
             this.Controls.Add(this.tickerComboBox);
             this.Controls.Add(this.startButton);
