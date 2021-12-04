@@ -370,25 +370,11 @@ namespace NhiNguyenNamNguyen_Project3
 
             annotation.Width = 100 / stockChart.Series["data"].Points.Count;
             double yRange = stockChart.ChartAreas["ChartArea1"].AxisY.Maximum - stockChart.ChartAreas["ChartArea1"].AxisY.Minimum + 20;
-            double high = Math.Max(p0.YValues[0], p1.YValues[0]);
-            double low = Math.Min(p0.YValues[1], p1.YValues[1]);
            
-          
-            annotation.Height = ((high-low) / yRange) * 85;
+            annotation.Height = ((p0.YValues[0] - p0.YValues[1]) / yRange) * stockChart.Height * 0.5;
              
-            if (p0.YValues[1] < p1.YValues[1] && p1.YValues[0] > p0.YValues[0])
-            {
-               if (annotation.Height <= 105 && annotation.Height >= -105)
-                 annotation.AnchorOffsetY = -(annotation.Height - 5);
-            }
-            else if (p0.YValues[1] > p1.YValues[1] && p1.YValues[0] > p0.YValues[0]) {  
-                if (annotation.Height <= 105 && annotation.Height >= -105)
-                     annotation.AnchorOffsetY = -(annotation.Height - 5);
-            }
-            else
-            {
-                 annotation.AnchorOffsetY = -(annotation.Height);
-            }
+            annotation.AnchorOffsetY = -(annotation.Height);
+            
 
             if (stockChart.Series["data"].Points.Count <= 3)
             {
@@ -444,12 +430,12 @@ namespace NhiNguyenNamNguyen_Project3
             else if (stockChart.Series["data"].Points.Count >= 40 && stockChart.Series["data"].Points.Count < 47)
             {
                 annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.015;
-                annotation.Width += 2;
+                annotation.Width += 1.7;
             }
             else if (stockChart.Series["data"].Points.Count >= 46 && stockChart.Series["data"].Points.Count < 67)
             {
                 annotation.AnchorOffsetX = stockChart.Series["data"].Points.Count * 0.009;
-                annotation.Width += 1.8;
+                annotation.Width += 1.7;
             }
             else if (stockChart.Series["data"].Points.Count >= 67 && stockChart.Series["data"].Points.Count < 80)
             {

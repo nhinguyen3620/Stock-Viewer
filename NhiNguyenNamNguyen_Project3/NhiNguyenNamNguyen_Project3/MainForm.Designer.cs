@@ -122,7 +122,7 @@ namespace NhiNguyenNamNguyen_Project3
             // 
             // startButton
             // 
-            this.startButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.startButton.BackColor = System.Drawing.Color.Sienna;
             this.startButton.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.startButton.Location = new System.Drawing.Point(128, 425);
