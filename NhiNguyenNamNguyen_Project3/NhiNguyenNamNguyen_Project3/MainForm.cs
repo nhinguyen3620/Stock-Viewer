@@ -53,6 +53,18 @@ namespace NhiNguyenNamNguyen_Project3
         /// <param name="e"></param>
         private void startButton_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(tickerComboBox.Text))
+            {
+                MessageBox.Show("Please choose a ticker!", "Error");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(periodComboBox.Text))
+            {
+                MessageBox.Show("Please choose a period!", "Error");
+                return;
+            }
+
             string[] tickerVal = tickerComboBox.Text.Split('-');
             var epoch = new DateTime(1970, 1, 1, 0, 0, 0);
 
